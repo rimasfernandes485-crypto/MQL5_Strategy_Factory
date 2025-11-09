@@ -1,3 +1,5 @@
+// Teste de validação automática 2025
+
 //+------------------------------------------------------------------+
 //|                 EA Base44 - Modelo Inicial                       |
 //|      Integração Base44 + GitHub - Fábrica de Estratégias         |
