@@ -1,0 +1,77 @@
+name: 🔍 Validação Automática MQL5 (Base44 → GitHub)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Experts/**/*.mq5'
+      - 'Include/**/*.mqh'
+
+jobs:
+  validar_codigo:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Faz o download do repositório
+      - name: 📥 Checkout do repositório
+        uses: actions/checkout@v4
+
+      # 2️⃣ Instala Python (usado para analisar a estrutura dos códigos)
+      - name: ⚙️ Configurar ambiente Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3️⃣ Instala dependências básicas
+      - name: 📦 Instalar dependências
+        run: |
+          pip install lxml pygments
+
+      # 4️⃣ Executa a verificação sintática dos arquivos .mq5 e .mqh
+      - name: 🔎 Validar estrutura dos códigos MQL5
+        run: |
+          echo "Iniciando validação de sintaxe dos arquivos MQL5..."
+          python3 <<'EOF'
+import os, re, sys
+
+def validar_codigo(codigo):
+    erros = []
+    if not "#property" in codigo:
+        erros.append("Falta a diretiva #property no início.")
+    if not re.search(r'(OnInit|OnDeinit|OnTick)', codigo):
+        erros.append("Falta uma das funções principais (OnInit, OnDeinit, OnTick).")
+    if codigo.count('{') != codigo.count('}'):
+        erros.append("Número desigual de chaves '{' e '}'.")
+    if "CTrade" not in codigo and "OrderSend" not in codigo:
+        erros.append("Nenhuma função de negociação encontrada (CTrade ou OrderSend).")
+    return erros
+
+base_dirs = ["Experts", "Include"]
+total_erros = 0
+
+for pasta in base_dirs:
+    for root, _, files in os.walk(pasta):
+        for f in files:
+            if f.endswith((".mq5", ".mqh")):
+                caminho = os.path.join(root, f)
+                with open(caminho, "r", encoding="utf-8", errors="ignore") as arq:
+                    conteudo = arq.read()
+                erros = validar_codigo(conteudo)
+                if erros:
+                    print(f"\n❌ Erros em {caminho}:")
+                    for e in erros:
+                        print("   -", e)
+                    total_erros += 1
+
+if total_erros == 0:
+    print("\n✅ Nenhum erro crítico encontrado nos códigos MQL5.")
+else:
+    print(f"\n⚠️ Total de arquivos com problemas: {total_erros}")
+    sys.exit(1)
+EOF
+
+      # 5️⃣ Mostra status final da validação
+      - name: ✅ Resultado da verificação
+        if: success()
+        run: echo "Validação concluída com sucesso. Códigos prontos para backtest!"
