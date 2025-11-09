@@ -1,0 +1,20 @@
+; EA_XAUUSD_Bollinger_H1_v6.0.set
+; Preset de Otimização - Base44
+; Gerado em: 2025-11-09
+
+RiskPercent=1||1||0.1||1||N
+DailyTarget=5||5||1.0||5||N
+MaxDailyLoss=2||2||0.5||2||N
+MinLotSize=0.01||0.01||0.01||0.01||N
+MagicNumber=17990||17990||1||17990||N
+ATR_Period=14||14||2||30||Y
+ATR_StopLoss_Multiplier=2.0||2.0||0.5||3.0||Y
+ATR_TakeProfit_Multiplier=3.0||3.0||1.0||5.0||Y
+UseTrailingStop=true||true||0||true||N
+TrailingStop_ATR_Multiplier=1.5||1.5||0.5||2.5||Y
+UsePinBarFilter=true||true||0||true||N
+UseMultiTimeframe=true||true||0||true||N
+UseRSIFilter=false||false||0||false||N
+RSI_Period=14||14||7||21||Y
+RSI_Overbought=70||70||60||80||Y
+RSI_Oversold=30||30||20||40||Y
