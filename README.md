@@ -1,2 +1,71 @@
-# MQL5_Strategy_Factory
-Produção de Códigos em formato MQL5, para pares de moedas do FOREX.
+
+---
+
+## 🔄 Fluxo de Trabalho Base44 + GitHub
+
+1. **Gerar o código na Base44**  
+   - Descreva o EA/indicador que deseja.
+   - Gere o código (.mq5 ou .mqh).
+
+2. **Enviar ao GitHub**  
+   - Faça upload do código em `Experts/`.
+   - O GitHub aciona automaticamente o sistema de validação.
+
+3. **Validação automática (GitHub Actions)**  
+   - O arquivo `.github/workflows/validate_mql5.yml` analisa o código.
+   - Se tudo estiver correto, o workflow marca o commit como “✔️ Validado”.
+
+4. **Integração futura com Base44 (via API)**  
+   - Assim que a Base44 liberar a integração universal, o repositório já estará preparado para automação completa.
+
+---
+
+## 🧩 Estrutura Modular Recomendada
+
+| Módulo | Descrição |
+|---------|------------|
+| `TradeManager.mqh` | Envio e controle de ordens |
+| `RiskManager.mqh` | Cálculo de lote e risco |
+| `IndicatorTools.mqh` | Funções de indicadores personalizados |
+| `Utils.mqh` | Funções gerais e logs |
+
+---
+
+## 🧠 Objetivo do Projeto
+
+Transformar a **Base44** em uma verdadeira **fábrica de estratégias inteligentes**, com o GitHub servindo como:
+
+- Núcleo de controle de versões;
+- Plataforma de automação e validação;
+- Base para colaboração e aprendizado coletivo;
+- Ambiente de backtest e análise.
+
+---
+
+## 📈 Status de Desenvolvimento
+
+| Módulo | Status |
+|--------|--------|
+| Estrutura de pastas | ✅ Concluída |
+| Validação automática | ⚙️ Em andamento |
+| Template EA Base | ⏳ Próximo passo |
+| Integração direta Base44 | 🚧 Planejada |
+
+---
+
+## 📜 Licença
+
+Este projeto está sob a licença **MIT**, permitindo uso, modificação e redistribuição com crédito ao autor original.
+
+---
+
+## 📬 Contato e colaboração
+
+Para sugestões, melhorias ou integração com o ecossistema Base44:
+
+📧 **Contato:** rimasfernandes485-crypto@github.io  
+🌐 **Repositório:** [MQL5_Strategy_Factory](https://github.com/rimasfernandes485-crypto/MQL5_Strategy_Factory)
+
+---
+
+⭐ Se este projeto te inspirar, deixe uma estrela no repositório!
